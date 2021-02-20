@@ -17,7 +17,10 @@ class Lacrosse::Devices
         "Authorization" => "Bearer #{token}"
       }
     )
-    response.parsed_response["items"]
+    {
+      location: location,
+      devices: response.parsed_response["items"]
+    }
   end
 
   def url_for_location(location_id)

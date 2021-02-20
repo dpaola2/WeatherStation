@@ -1,13 +1,13 @@
 module LacrosseHelper
-  def lacrosse_token
-    url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyD-Uo0hkRIeDYJhyyIg-TvAv8HhExARIO4"
-    payload = {
-      email: ENV['LACROSSE_EMAIL'],
-      returnSecureToken: true,
-      password: ENV['LACROSSE_PASSWORD']
-    }
+  def device_map(location, device)
+    sensor = device["sensor"]
 
-    response = HTTParty.post(url, body: payload)
-    response.parsed_response["idToken"]
+    {
+      device_name: device["name"].downcase.sub(" ", "_"),
+      device_id: device["id"],
+      sensor_type_name: sensor["type"]["name"],
+      sensor_id: sensor["id"],
+      sensor_field_names: sensor["fields"].keys.map(&:downcase).reject {|f| f == "notsupported"}.join(",")
+    }
   end
 end

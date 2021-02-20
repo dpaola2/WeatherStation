@@ -4,6 +4,7 @@ class Lacrosse::Retrieve
   organize(
     Lacrosse::Login,
     Lacrosse::Locations,
-    Lacrosse::Devices
+    Lacrosse::Devices,
+    Lacrosse::WeatherData
   )
 end
