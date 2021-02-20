@@ -10,9 +10,6 @@ class Wunderground::UploadDataPoint
     else
       "Unrecognized data type: #{data['type']}"
     end
-    puts result
-  rescue Exception => e
-    puts e.message
   end
 
   private

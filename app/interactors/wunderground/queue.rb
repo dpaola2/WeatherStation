@@ -5,7 +5,6 @@ class Wunderground::Queue
 
   def call
     cleaned_data.map do |data|
-      ap data
       UploadDataPointJob.perform_async(data)
     end
   end
