@@ -6,8 +6,7 @@ class Lacrosse::WeatherData
 
   def call
     context.device_data = map_data(devices)
-    context.weather_data_urls = context.device_data.map {|d| url(d) }
-    context.weather_data = context.weather_data_urls.map {|weather_url| weather_data_for(weather_url) }
+    context.weather_data = context.device_data.map {|d| weather_data_for(d) }
   end
 
   private
@@ -24,14 +23,16 @@ class Lacrosse::WeatherData
     "https://ingv2.lacrossetechnology.com/api/v1.1/active-user/device-association/ref.user-device.#{device[:device_id]}/feed?fields=#{device[:sensor_field_names]}&tz=#{tz}&from&to&aggregates=ai.ticks.1&types=spot"
   end
 
-  def weather_data_for(weather_url)
+  def weather_data_for(device)
+    weather_url = url(device)
+
     response = HTTParty.get(
       weather_url,
       headers: {
         "Authorization" => "Bearer #{token}"
       }
     )
-    response.parsed_response
+    response.parsed_response["ref.user-device.#{device[:device_id]}"]["ai.ticks.1"]["fields"]
   end
 
   def tz
