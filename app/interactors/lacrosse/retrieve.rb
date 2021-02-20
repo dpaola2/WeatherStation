@@ -5,6 +5,7 @@ class Lacrosse::Retrieve
     Lacrosse::Login,
     Lacrosse::Locations,
     Lacrosse::Devices,
-    Lacrosse::WeatherData
+    Lacrosse::WeatherData,
+    Lacrosse::Save
   )
 end
