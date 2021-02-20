@@ -6,7 +6,10 @@ class Wunderground::UploadDataPoint
 
   def call
     result = if data["type"] == "temp_and_humidity"
-      "Uploading #{data_string(data)}"
+      context.response = HTTParty.get(
+        upload_url,
+        query: payload
+      )
     else
       "Unrecognized data type: #{data['type']}"
     end
@@ -14,7 +17,24 @@ class Wunderground::UploadDataPoint
 
   private
 
+  def upload_url
+    "http://rtupdate.wunderground.com/weatherstation/updateweatherstation.php"
+  end
+
   def data_string(d)
     "Temp: #{d['temperature']} at #{d['readable_timestamp']}"
+  end
+
+  def payload
+    {
+      'action' => 'updateraw',
+      'dateutc' => data["readable_timestamp"],
+      'ID' => station_id,
+      'PASSWORD' => station_key,
+      'realtime' => 1,
+      'rtfreq' => 2.5,
+      'tempf' => data['temperature'],
+      'humidity' => data['humidity']
+    }
   end
 end
