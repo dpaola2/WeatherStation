@@ -3,6 +3,7 @@ class Lacrosse::Retrieve
 
   organize(
     Lacrosse::Login,
-    Lacrosse::Locations
+    Lacrosse::Locations,
+    Lacrosse::Devices
   )
 end
