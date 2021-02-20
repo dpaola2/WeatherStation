@@ -1,0 +1,2 @@
+class LacrosseDump < ApplicationRecord
+end

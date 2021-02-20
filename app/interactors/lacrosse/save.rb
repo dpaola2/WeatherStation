@@ -4,6 +4,6 @@ class Lacrosse::Save
   delegate :weather_data, to: :context
 
   def call
-    WeatherData.create!(data: weather_data)
+    LacrosseDump.create!(data: weather_data)
   end
 end
