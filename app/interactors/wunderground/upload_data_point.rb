@@ -6,6 +6,7 @@ class Wunderground::UploadDataPoint
 
   def call
     result = if data["type"] == "temp_and_humidity"
+      context.querystring = payload
       context.response = HTTParty.get(
         upload_url,
         query: payload

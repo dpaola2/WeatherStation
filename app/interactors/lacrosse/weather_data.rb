@@ -20,7 +20,7 @@ class Lacrosse::WeatherData
   end
 
   def url(device)
-    "https://ingv2.lacrossetechnology.com/api/v1.1/active-user/device-association/ref.user-device.#{device[:device_id]}/feed?fields=#{device[:sensor_field_names]}&tz=#{tz}&from&to&aggregates=ai.ticks.1&types=spot"
+    "https://ingv2.lacrossetechnology.com/api/v1.1/active-user/device-association/ref.user-device.#{device[:device_id]}/feed?fields=#{device[:sensor_field_names]}&tz=#{tz}&from=#{from}&to=#{to}&aggregates=ai.ticks.1&types=spot"
   end
 
   def weather_data_for(device)
@@ -37,5 +37,13 @@ class Lacrosse::WeatherData
 
   def tz
     "America/Los_Angeles"
+  end
+
+  def from
+    (Time.current - 15.minutes).utc.to_i
+  end
+
+  def to
+    Time.current.utc.to_i
   end
 end
