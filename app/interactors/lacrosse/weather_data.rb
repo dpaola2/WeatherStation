@@ -16,7 +16,9 @@ class Lacrosse::WeatherData
       device_location[:devices].map do |device|
         device_map(device[:location], device)
       end
-    end.flatten
+    end.flatten.reject do |d|
+      d[:device_name] == "indoor" 
+    end
   end
 
   def url(device)
