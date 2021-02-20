@@ -32,7 +32,12 @@ class Wunderground::UploadDataPoint
       'ID' => station_id,
       'PASSWORD' => station_key,
       'realtime' => 1,
-      'rtfreq' => 2.5,
+      'rtfreq' => 2.5
+    }.merge(custom_payload)
+  end
+
+  def custom_payload
+    {
       'tempf' => data['temperature'],
       'humidity' => data['humidity']
     }
