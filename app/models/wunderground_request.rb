@@ -1,0 +1,2 @@
+class WundergroundRequest < ApplicationRecord
+end
