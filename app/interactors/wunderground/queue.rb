@@ -4,13 +4,9 @@ class Wunderground::Queue
   delegate :cleaned_data, to: :context
 
   def call
-    context.result = cleaned_data.map do |data|
-      result = Wunderground::UploadDataPoint.call(data: data)
-      if result.success?
-        result.result
-      else
-        "error"
-      end
+    cleaned_data.map do |data|
+      ap data
+      UploadDataPointJob.perform_async(data)
     end
   end
 end

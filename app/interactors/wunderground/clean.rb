@@ -15,6 +15,7 @@ class Wunderground::Clean
         data["Temperature"]["values"].zip(data["Humidity"]["values"]).map do |tuple|
           {
             type: :temp_and_humidity,
+            readable_timestamp: Time.at(tuple.first["u"]).strftime('%Y-%m-%d %H:%M:%S'),
             utc_timestamp: tuple.first["u"],
             temperature: celsius_to_fahrenheit(tuple.first["s"]),
             humidity: tuple.second["s"]
