@@ -3,6 +3,7 @@
 # Table name: wunderground_requests
 #
 #  id         :bigint           not null, primary key
+#  payload    :jsonb
 #  response   :jsonb
 #  url        :string
 #  created_at :datetime         not null

@@ -6,11 +6,16 @@ class Wunderground::UploadDataPoint
 
   def call
     result = if data["type"] == "temp_and_humidity"
-      context.querystring = payload
+      wunderground_request = WundergroundRequest.create!(
+        url: upload_url,
+        payload: payload
+      )
+
       context.response = HTTParty.get(
         upload_url,
         query: payload
       )
+      wunderground_request.update(context.response.parsed_response)
     else
       "Unrecognized data type: #{data['type']}"
     end

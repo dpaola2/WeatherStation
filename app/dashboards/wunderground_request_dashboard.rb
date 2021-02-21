@@ -10,6 +10,7 @@ class WundergroundRequestDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     url: Field::String,
+    payload: Field::String.with_options(searchable: false),
     response: Field::String.with_options(searchable: false),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -23,6 +24,7 @@ class WundergroundRequestDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
   id
   url
+  payload
   response
   created_at
   ].freeze
@@ -32,6 +34,7 @@ class WundergroundRequestDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
   id
   url
+  payload
   response
   created_at
   updated_at
@@ -42,6 +45,7 @@ class WundergroundRequestDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
   url
+  payload
   response
   ].freeze
 
