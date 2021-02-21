@@ -15,7 +15,7 @@ class Wunderground::UploadDataPoint
         upload_url,
         query: payload
       )
-      wunderground_request.update(context.response.parsed_response)
+      wunderground_request.update(response: context.response.parsed_response)
     else
       "Unrecognized data type: #{data['type']}"
     end
