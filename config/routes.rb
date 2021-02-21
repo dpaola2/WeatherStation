@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
     root to: "wunderground_requests#index"
   end
+
+  root to: "landing#index"
 end

@@ -1,0 +1,42 @@
+<h1>Dave's Weather Station</h1>
+
+<%= link_to "View on Weather Underground",  "https://www.wunderground.com/dashboard/pws/KCASOUTH215/", target: "_blank" %>
+
+<h2>Latest conditions</h2>
+<p>
+  Last updated <%= time_ago_in_words(Time.at(@lacrosse_dump.data.first["Temperature"]["values"].last["u"].to_i)) %> ago
+  <i>(<%= Time.at(@lacrosse_dump.data.first["Temperature"]["values"].last["u"].to_i) %>)</i>
+</p>
+
+<table>
+  <tr>
+    <th>Temperature</th>
+    <td>
+      <%= celsius_to_fahrenheit(@lacrosse_dump.data.first["Temperature"]["values"].last["s"]).to_i %>&deg;F
+    </td>
+  </tr>
+  <tr>
+    <th>Relative Humidity</th>
+    <td>
+      <%= @lacrosse_dump.data.first["Humidity"]["values"].last["s"].to_i %>%
+    </td>
+  </tr>
+  <tr>
+    <th>Heat Index</th>
+    <td>
+      <%= @lacrosse_dump.data.first["HeatIndex"]["values"].last["s"].to_i %>&deg;F
+    </td>
+  </tr>
+  <tr>
+    <th>Wind Speed</th>
+    <td>
+      <%= kilometers_to_miles(@lacrosse_dump.data.second["WindSpeed"]["values"].last["s"]).to_i %> mph
+    </td>
+  </tr>
+  <tr>
+    <th>Rainfall</th>
+    <td>
+      <%= @lacrosse_dump.data.third["Rain"]["values"].last["s"].to_i %> inches
+    </td>
+  </tr>
+</table>

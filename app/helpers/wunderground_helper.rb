@@ -14,4 +14,8 @@ module WundergroundHelper
   def celsius_to_fahrenheit(celsius)
     celsius * 9 / 5 + 32
   end
+
+  def kilometers_to_miles(km)
+    km * 1.60934
+  end
 end
