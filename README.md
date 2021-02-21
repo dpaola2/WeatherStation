@@ -1,6 +1,6 @@
 # WeatherStation
 
-Rails app to monitor LaCrosse weather station data and upload to my Weather Underground device reports.
+Rails app to monitor LaCrosse weather station data and upload to my Weather Underground device reports. [See it in action here.](https://weather.davepaola.com)
 
 Thanks to @keithprickett for prior work on [python libraries](https://github.com/keithprickett/lacrosse_to_wunderground) that made this project much faster to implement.
 
